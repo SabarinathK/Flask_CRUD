@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>Songs</title>
+    <style>
+      .without_ampm::-webkit-datetime-edit-ampm-field {
+        display: none;
+      }
+      input[type="time"]::-webkit-clear-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+        margin: -10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="POST" action="/audio_book">
+      Song name <input name="song_name" type="text" />
+      author<input name="author" type="text" />
+      narrator<input name="narrator"  type="text" />
+      Duration<input name="duration" class="without_ampm" type="time" />
+      <button>submit</button>
+    </form>
+
+    <br />
+    <div class="container md-4">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">author</th>
+            <th scope="col">narrator</th>
+            <th scope="col">duration</th>
+            <th scope="col">time</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        {% for user in users %}
+        <tbody>
+          <tr>
+            <!-- <th scope="row"></th> -->
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.author}}</td>
+            <td>{{user.narrator}}</td>
+            <td>{{user.duration}}</td>
+            <td>{{user.time}}</td>
+
+            <td>
+              <a
+                href="{{ url_for('audio_edit',id=user.id) }}"
+                class="btn btn-outline-warning"
+                >Edit</a
+              >
+            </td>
+            <td>
+              <a
+                href="{{ url_for('audio_delete',id=user.id) }}"
+                class="btn btn-outline-warning"
+                >Delete</a
+              >
+            </td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title>Songs</title>
+    <style>
+      .without_ampm::-webkit-datetime-edit-ampm-field {
+        display: none;
+      }
+      input[type="time"]::-webkit-clear-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+        margin: -10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="POST" action="/song">
+      Song name <input name="song_name" type="text" /> Duration
+      <input name="Duration" class="without_ampm" type="time" />
+      <button>submit</button>
+    </form>
+
+    <br />
+    <div class="container md-4">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Company_name</th>
+            <th scope="col">email</th>
+            <th scope="col">Phone_number</th>
+            <th scope="col">Address</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        {% for user in users %}
+        <tbody>
+          <tr>
+            <!-- <th scope="row"></th> -->
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.Duration}}</td>
+            <td>{{user.time}}</td>
+
+            <td>
+              <a
+                href="{{ url_for('edit',id=user.id) }}"
+                class="btn btn-outline-warning"
+                >Edit</a
+              >
+            </td>
+            <td>
+              <a
+                href="{{ url_for('delete',id=user.id) }}"
+                class="btn btn-outline-warning"
+                >Delete</a
+              >
+            </td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>

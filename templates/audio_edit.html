@@ -1,0 +1,39 @@
+<div class="container">
+  <html>
+  <head>
+    <title>Songs</title>
+    <style>
+      .without_ampm::-webkit-datetime-edit-ampm-field {
+        display: none;
+      }
+      input[type="time"]::-webkit-clear-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+        margin: -10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="{{url_for('audio_edit',id=update.id)}}" method="POST" >
+      Song name <input name="song_name" type="text" value={{update.name}}>
+      author<input name="author" type="text" value={{update.author}}>
+      narrator<input name="narrator"  type="text" value={{update.narrator}}>
+      Duration<input name="duration" class="without_ampm" type="time" value={{update.duration}}>
+      <button>submit</button>
+    </form>
+  
+  </body>
+  </html>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
